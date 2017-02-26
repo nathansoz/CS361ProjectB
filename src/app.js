@@ -7,4 +7,7 @@ app.get('/', function (req, res) {
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
+  if(process.env['FBDEV']) {
+    console.log('Dev environment variable set! Using dev settings...');
+  }
 })

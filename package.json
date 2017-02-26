@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "test": "mocha",
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "devstart": "node src/app.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/nathansoz/CS361ProjectB#readme",
   "devDependencies": {
+    "dockerode": "^2.3.1",
     "mocha": "^3.2.0"
   },
   "dependencies": {
