@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "start": "node src/app.js",
-    "devstart": "node src/app.js"
+    "devstart": "node devstart.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,9 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
-    "express": "^4.14.1"
+    "express": "^4.14.1",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.2",
+    "sleep": "^5.1.0"
   }
 }

@@ -13,7 +13,7 @@ process.on('SIGINT', function() {
 
 
 function startmysql(callback) {
-    docker.createContainer({Image: 'mysql:8', name: CONTAINER_NAME, Env: ['MYSQL_ROOT_PASSWORD=dev']}, function (err, container) {
+    docker.createContainer({Image: 'mysql:8', name: CONTAINER_NAME, Env: ['MYSQL_ROOT_PASSWORD=dev'], HostConfig: { PortBindings: { "3306/tcp": [{ HostPort: "3306" }] } }}, function (err, container) {
       container.start(function (err, data) {
           if(callback) { callback() }
       });
@@ -68,8 +68,10 @@ function startApp(callback) {
 }
 
 startDocker( function() {
+                 console.log("hello!");
                  process.env['FBDEV'] = true;
                  startApp(function() {
                      cleanup(process.exit)
                  })
            });
+
