@@ -14,7 +14,9 @@ var db        = {};
 
 function tryConnect(callback)
 {
+
     console.log("Attempting to open db connection");
+
     var mysql_connection = mysql.createConnection({
         host     : 'localhost',
         user     : 'root',
