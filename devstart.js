@@ -14,7 +14,7 @@ function startmysql(callback) {
     docker.createContainer({
         Image: 'mysql:8',
         name: CONTAINER_NAME,
-        Env: ['MYSQL_ROOT_PASSWORD=dev'],
+        Env: ['MYSQL_ROOT_PASSWORD=fbdev'],
         HostConfig: {
             PortBindings: {
                 "3306/tcp": [{
