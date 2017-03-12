@@ -6,19 +6,18 @@
 var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
-var sequelize = new Sequelize("fbank", "root", "dev", {
-    host: "localhost"
-});
-var mysql = require('mysql');
-var sleep = require('sleep');
-var db = {};
+var sequelize = new Sequelize("fbank", "root", "fbdev", { host: "localhost" });
+var mysql     = require('mysql');
+var sleep     = require('sleep');
+var db        = {};
 
-function tryConnect(callback) {
+function tryConnect(callback)
+{
     console.log("Attempting to open db connection");
     var mysql_connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'dev'
+        host     : 'localhost',
+        user     : 'root',
+        password : 'fbdev'
     });
     mysql_connection.connect(function(err) {
         if (err) {
