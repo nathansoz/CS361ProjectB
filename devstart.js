@@ -31,7 +31,7 @@ function cleanup(callback) {
 }
 
 function startDocker(callback) {
-
+  
     console.log("Downloading mysql docker container, please wait...");
 
     docker.pull('mysql:8', function (err, stream) {
@@ -54,9 +54,11 @@ function startDocker(callback) {
         }
         function onProgress(event) { }
     });
+    
 }
 
 function startApp(callback) {
+
     var proc = child.fork('src/app.js');
     process.on('error', function(err) { 
         if(callback) { callback() };
@@ -70,7 +72,7 @@ function startApp(callback) {
 startDocker( function() {
                  console.log("hello!");
                  process.env['FBDEV'] = true;
-                 startApp(function() {
+                 startApp(function(){
                      cleanup(process.exit)
                  })
            });
