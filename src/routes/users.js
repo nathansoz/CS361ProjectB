@@ -11,6 +11,25 @@ exports.register = function(req, res) {
 exports.login = function(req, res) {
     res.render('login');
 };
+exports.browse = function(req, res) {
+    res.render('browse');
+    // pulling from db goes here!
+}
+exports.swap = function(req, res) {
+    res.render('swap');
+    // pulling from db goes here!
+}
+exports.bankSwap = function(req, res) {
+    db.Item.find({
+        where: {
+            name: req.body.item
+        }
+    }).success(function(){
+        /*db.Item({locatedAt: req.body.bankTwo}).error(function(err){
+            console.log(err);
+        }); */
+    });
+}
 exports.registerNew = function(req, res) {
     // Front-End Verification:
     var name = req.body.name;

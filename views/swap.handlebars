@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-sm-offset-4 col-md-4">
+        <h2 class="page_header">Swap Furniture</h2>
+        <form method="post" action="/swap">
+            <div class="form-group">
+                <label>Furniture Bank Source:</label>
+                <select class="form-control" placeholder="Furniture Bank" name="bankOne">
+                    <option value="TEST">Test</option>
+                    <!-- placeholder, each options pulled from db -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Furniture Bank Destination:</label>
+                <select class="form-control" placeholder="Furniture Bank" name="bankTwo">
+                    <option value="TEST">Test</option>
+                    <!-- placeholder -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Item for Transport:</label>
+                <select class="form-control" placeholder="Furniture" name="item">
+                    <option value="TEST">Test</option>
+                    <!-- placeholder, THESE options are pulled from db based on the furniture bank source -->
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Submit</submit>
+            </div>
+        </form>
+    </div>
+</div>

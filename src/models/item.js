@@ -10,12 +10,17 @@ module.exports = function(sequelize, DataTypes) {
         description: DataTypes.STRING,
         wearPercentage: DataTypes.INTEGER
     },
-    { 
+    {
         classMethods: {
             associate: function(models) {
                 Item.belongsTo(models.Donor);
+            }
+            // please review, not familiar with setting mysql tables like this!
+            associate: function(models) {
+                Item.locatedAt(models.Bank);
+            }
         }
-    }});
+    });
 
     return Item;
 };
