@@ -19,6 +19,7 @@ var db = require('./models');
 var application = require('./routes/application');
 var routes = require('./routes');
 var users = require('./routes/users');
+var recipient = require('./routes/recipient');
 
 var app = express();
 
@@ -50,14 +51,25 @@ app.use(session({
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-function seed() {    
-    db.sequelize.sync({force: true}).then(function() {
-        db.Customer.create({ username: "test" });
-        db.Address.create({ primaryAddressLine: "123 Awesome St.", city: "Seattle", state: "Washington", country: "USA" }).then(function(addr){
-              db.Bank.create({ name: "Big Bank"}).then(function(bank) {
-                  bank.setAddress(addr);
-              });
+// XXX: is this used? move to db files??
+function seed() {
+    db.sequelize.sync({
+        force: true
+    }).then(function() {
+        db.Customer.create({
+            username: "test"
+        });
+        db.Address.create({
+            primaryAddressLine: "123 Awesome St.",
+            city: "Seattle",
+            state: "Washington",
+            country: "USA"
+        }).then(function(addr) {
+            db.Bank.create({
+                name: "Big Bank"
+            }).then(function(bank) {
+                bank.setAddress(addr);
+            });
         });
     });
 }
@@ -101,6 +113,12 @@ app.post('/authenticate', passport.authenticate('local', {
 app.get('/userhome', application.IsAuthenticated, users.homepage);
 // Logout of session
 app.get('/logout', application.destroySession);
+// routes for browsing furniture
+app.get('/browse', recipient.browse);
+app.get('/appointment/:id', recipient.appointment);
+app.post('/appointment', recipient.appointmentNew);
+// routes for donating furniture
+// routes for furniture banks
 
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!')
@@ -111,4 +129,5 @@ app.listen(3000, function() {
         // db.init(function() { seed() });
     }
 });
-
+// export for testing
+module.exports = app;

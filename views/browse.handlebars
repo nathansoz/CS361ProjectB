@@ -1,0 +1,23 @@
+<div class="container">
+    <h1 class="page_header">Browse Furniture</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Furniture Bank</th>
+                <th></th>
+            </tr>
+        </thead>
+        {{#each data}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{description}}</td>
+                <td>{{location}}</td>
+                <td>{{bank}}</td>
+                <td><a class="btn btn-block" href="/appointment/{{id}}">Make Appointment</a></td>
+            </tr>
+        {{/each}}
+    </table>
+</div>
