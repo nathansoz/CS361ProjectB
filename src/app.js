@@ -51,7 +51,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-function seed() {    
+function seed() {
     db.sequelize.sync({force: true}).then(function() {
         db.Customer.create({ username: "test" });
         db.Address.create({ primaryAddressLine: "123 Awesome St.", city: "Seattle", state: "Washington", country: "USA" }).then(function(addr){
@@ -97,6 +97,9 @@ app.post('/authenticate', passport.authenticate('local', {
     successRedirect: '/userhome',
     failureRedirect: '/'
 }));
+app.get('/browse', users.browse);
+app.get('/swap', users.swap);
+app.post('/swap', users.bankSwap);
 // After user authentication
 app.get('/userhome', application.IsAuthenticated, users.homepage);
 // Logout of session
@@ -111,4 +114,3 @@ app.listen(3000, function() {
         // db.init(function() { seed() });
     }
 });
-
