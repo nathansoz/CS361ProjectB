@@ -6,15 +6,15 @@ module.exports = function(sequelize, DataTypes) {
         username: {
             type: DataTypes.STRING,
             unique: true,
+            allowNull: false,
             validate: {
-                notNull: true,
                 notEmpty: true
             }
         },
         password: {
             type: DataTypes.STRING,
+            allowNull: false,
             validate: {
-                notNull: true,
                 notEmpty: true
             }
         }
@@ -37,14 +37,7 @@ module.exports = function(sequelize, DataTypes) {
     });
     // Everytime user is created hash a password
     User.hook('beforeCreate', function(user, fn) {
-        var salt = bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-            return salt;
-        });
-        bcrypt.hash(user.password, salt, null, function(err, hash) {
-            if (err) return next(err);
-            user.password = hash;
-            return fn(null, user);
-        })
+        user.dataValues.password = bcrypt.hashSync(user.dataValues.password, bcrypt.genSaltSync(8), null);
     });
     return User;
 };

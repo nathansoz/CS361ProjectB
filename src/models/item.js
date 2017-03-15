@@ -14,10 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
             associate: function(models) {
                 Item.belongsTo(models.Donor);
-            }
-            // please review, not familiar with setting mysql tables like this!
-            associate: function(models) {
-                Item.locatedAt(models.Bank);
+                Item.belongsTo(models.Bank);
             }
         }
     });
