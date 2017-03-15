@@ -19,7 +19,6 @@ var db = require('./models');
 var application = require('./routes/application');
 var routes = require('./routes');
 var users = require('./routes/users');
-var recipient = require('./routes/recipient');
 
 var app = express();
 
@@ -111,18 +110,14 @@ app.post('/authenticate', passport.authenticate('local', {
     failureRedirect: '/'
 }));
 app.get('/browse', users.browse);
+app.get('/appointment/:id', users.appointment);
+app.post('/appointment', users.appointmentNew);
 app.get('/swap', users.swap);
 app.post('/swap', users.bankSwap);
 // After user authentication
 app.get('/userhome', application.IsAuthenticated, users.homepage);
 // Logout of session
 app.get('/logout', application.destroySession);
-// routes for browsing furniture
-app.get('/browse', recipient.browse);
-app.get('/appointment/:id', recipient.appointment);
-app.post('/appointment', recipient.appointmentNew);
-// routes for donating furniture
-// routes for furniture banks
 
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!')

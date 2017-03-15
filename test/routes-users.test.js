@@ -1,17 +1,17 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-var recipient = require('../src/routes/recipient');
+var user = require('../src/routes/users');
 var server = require('../src/app');
 var db = require('../src/models');
 var should = chai.should();
 chai.use(chaiHttp);
-// testing for recipient routes
-describe('routes - recipient', function() {
+// testing for user routes
+describe('routes - user', function() {
     beforeEach(function() {
         db.sequelize.sync({
             force: true
         }).then((data) => {
-          console.log(data);
+            console.log(data);
             require('../src/config/db-seed')(db);
         });
     });

@@ -1,6 +1,6 @@
-<div class="container">
+<div class="col-sm-6 col-sm-offset-3">
     <h1 class="page_header">Make Appointment</h1>
-    <form method="post" action="/appointment" class="col-sm-6 col-sm-offset-3">
+    <form method="post" action="/appointment">
         <div class="form-group row">
             <label class="col-xs-12">Item</label>
             <div class="col-sm-9">
@@ -13,7 +13,7 @@
         <div class="form-group row">
             <label class="col-xs-12">Furniture Bank</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Furniture Bank" name="bank">
+                <input type="text" class="form-control" placeholder="Furniture Bank" name="bank" value="{{data.bank}}">
             </div>
             <div class="col-sm-3">
                 <a href="#" class="btn btn-block btn-primary">Find Bank</a>
