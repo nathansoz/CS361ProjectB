@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
             associate: function(models) {
                 Item.belongsTo(models.Donor);
-                Item.locatedAt(models.Bank);
+                Item.belongsTo(models.Bank);
             }
         }
     });
