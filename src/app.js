@@ -110,7 +110,8 @@ app.post('/authenticate', passport.authenticate('local', {
     failureRedirect: '/'
 }));
 app.get('/browse', users.browse);
-app.get('/appointment/:id', users.appointment);
+app.get('/appointment/:id', users.appointment); // populate from selection
+app.get('/appointment', users.appointment);     // empty appointment
 app.post('/appointment', users.appointmentNew);
 app.get('/swap', users.swap);
 app.post('/swap', users.bankSwap);
@@ -124,8 +125,8 @@ app.listen(3000, function() {
     if (process.env['FBDEV']) {
         console.log('Dev environment variable set! Using dev settings...');
         console.log("No Database Connection.\nRemove comments from lines 122-123(" + "app.js) to connect to mysql");
-        // console.log('Creating sample user');
-        // db.init(function() { seed() });
+        console.log('Creating sample user');
+        db.init(function() { seed() });
     }
 });
 // export for testing

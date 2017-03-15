@@ -55,6 +55,7 @@ exports.appointment = function(req, res) {
         data = __MOCK_DATA__.find(obj => obj.id === +id);
     }
     res.status(200);
+    res.render('appointment', {data});
 };
 // route for when user submits a new appointment
 exports.appointmentNew = function(req, res) {
