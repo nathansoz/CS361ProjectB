@@ -17,7 +17,7 @@ describe('routes - user', function() {
     });
     describe('browse', function() {
         xit('should handle errors', function() {});
-        it('should GET all items', function(done) {
+        xit('should GET all items', function(done) {
             chai.request(server).get('/browse').end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
