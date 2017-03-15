@@ -110,7 +110,7 @@ app.listen(3000, function() {
     if (process.env['FBDEV']) {
         console.log('Dev environment variable set! Using dev settings...');
         console.log("No Database Connection.\nRemove comments from lines 122-123(" + "app.js) to connect to mysql");
-        // console.log('Creating sample user');
-        // db.init(function() { seed() });
+        console.log('Creating sample user');
+        db.init(function() { seed() });
     }
 });
