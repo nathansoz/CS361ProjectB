@@ -51,6 +51,7 @@ app.use(session({
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
 // XXX: is this used? move to db files??
 function seed() {
     db.sequelize.sync({
@@ -109,6 +110,9 @@ app.post('/authenticate', passport.authenticate('local', {
     successRedirect: '/userhome',
     failureRedirect: '/'
 }));
+app.get('/browse', users.browse);
+app.get('/swap', users.swap);
+app.post('/swap', users.bankSwap);
 // After user authentication
 app.get('/userhome', application.IsAuthenticated, users.homepage);
 // Logout of session
