@@ -51,16 +51,16 @@ exports.registerNew = function(req, res) {
     }
     else {
         console.log("Does not recognize below as a function.");
-        db.User.find({
+        db.User.findOne({
             where: {
                 username: req.username
             }
-        }).success(function(user) {
+        }).then(function(user) {
             if (!user) {
                 console.log("user should be created here.");
-                /*db.User.create({username: req.body.username, password: req.body.password}).error(function(err){
+                db.User.create({username: req.body.username, password: req.body.password}).error(function(err){
                     console.log(err);
-              }); */
+                });
             }
             else {
                 res.redirect('/register');
