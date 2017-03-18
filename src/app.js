@@ -117,6 +117,8 @@ app.get('/addinventory', users.addInventory);
 app.post('/addinventory', users.newInventory);
 app.get('/swap', users.swap);
 app.post('/swap', users.bankSwap);
+app.get('/registerbank', users.registerBank);
+app.post('/registerbank', users.bankNew);
 // After user authentication
 app.get('/userhome', application.IsAuthenticated, users.homepage);
 // Logout of session
