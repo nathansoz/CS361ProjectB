@@ -51,13 +51,25 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// XXX: is this used? move to db files??
 function seed() {
-    db.sequelize.sync({force: true}).then(function() {
-        db.Customer.create({ username: "test" });
-        db.Address.create({ primaryAddressLine: "123 Awesome St.", city: "Seattle", state: "Washington", country: "USA" }).then(function(addr){
-              db.Bank.create({ name: "Big Bank"}).then(function(bank) {
-                  bank.setAddress(addr);
-              });
+    db.sequelize.sync({
+        force: true
+    }).then(function() {
+        db.Customer.create({
+            username: "test"
+        });
+        db.Address.create({
+            primaryAddressLine: "123 Awesome St.",
+            city: "Seattle",
+            state: "Washington",
+            country: "USA"
+        }).then(function(addr) {
+            db.Bank.create({
+                name: "Big Bank"
+            }).then(function(bank) {
+                bank.setAddress(addr);
+            });
         });
     });
 }
@@ -98,6 +110,9 @@ app.post('/authenticate', passport.authenticate('local', {
     failureRedirect: '/'
 }));
 app.get('/browse', users.browse);
+app.get('/appointment/:id', users.appointment); // populate from selection
+app.get('/appointment', users.appointment);     // empty appointment
+app.post('/appointment', users.appointmentNew);
 app.get('/swap', users.swap);
 app.post('/swap', users.bankSwap);
 // After user authentication
@@ -114,3 +129,5 @@ app.listen(3000, function() {
         db.init(function() { seed() });
     }
 });
+// export for testing
+module.exports = app;

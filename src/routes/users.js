@@ -1,5 +1,32 @@
 //users.js
 var db = require('../models');
+
+var __MOCK_DATA__ = [{
+    id: 1,
+    name: 'table',
+    description: 'rusty',
+    location: 'Stockton',
+    bank: 'furniture bank 2'
+}, {
+    id: 2,
+    name: 'table',
+    description: 'like new',
+    location: 'LA',
+    bank: 'furniture bank 3'
+}, {
+    id: 3,
+    name: 'piano',
+    description: 'smelly',
+    location: 'Sacramento',
+    bank: 'furniture bank 1'
+}, {
+    id: 4,
+    name: 'chair',
+    description: 'bright pink',
+    location: 'Vacaville',
+    bank: 'furniture bank 1'
+}]; // TODO: REMOVE / move to testing
+
 exports.homepage = function(req, res) {
     res.render("userhome", {
         myVar: req.user.username
@@ -11,25 +38,46 @@ exports.register = function(req, res) {
 exports.login = function(req, res) {
     res.render('login');
 };
+// route for users to browse listings of furniture
 exports.browse = function(req, res) {
-    res.render('browse');
-    // pulling from db goes here!
-}
+  // TODO: remove mock data, hook up to api, tests, err checking
+    res.status(200);
+    res.render('browse', {
+        data: __MOCK_DATA__
+    });
+};
+// route for users to make appointments from
+exports.appointment = function(req, res) {
+  // TODO: remove mock data, hook up to db, build tests, err check
+    var data = {};
+    var id = req.params.id;
+    if (id) {
+        data = __MOCK_DATA__.find(obj => obj.id === +id);
+    }
+    res.status(200);
+    res.render('appointment', {data});
+};
+// route for when user submits a new appointment
+exports.appointmentNew = function(req, res) {
+  //TODO: handle subbmitting a new appointment -> error checking, api calls, tests
+  res.redirect(200, '/');
+};
+// route for swapping furniture
 exports.swap = function(req, res) {
     res.render('swap');
     // pulling from db goes here!
-}
+};
 exports.bankSwap = function(req, res) {
     db.Item.find({
         where: {
             name: req.body.item
         }
-    }).success(function(){
+    }).success(function() {
         /*db.Item({locatedAt: req.body.bankTwo}).error(function(err){
             console.log(err);
         }); */
     });
-}
+};
 exports.registerNew = function(req, res) {
     // Front-End Verification:
     var name = req.body.name;
