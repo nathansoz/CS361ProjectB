@@ -113,6 +113,8 @@ app.get('/browse', users.browse);
 app.get('/appointment/:id', users.appointment); // populate from selection
 app.get('/appointment', users.appointment);     // empty appointment
 app.post('/appointment', users.appointmentNew);
+app.get('/addinventory', users.addInventory);
+app.post('/addinventory', users.newInventory);
 app.get('/swap', users.swap);
 app.post('/swap', users.bankSwap);
 // After user authentication

@@ -1,0 +1,54 @@
+<div class="col-sm-6 col-sm-offset-3">
+    <h1 class="page_header">Add Item to Inventory</h1>
+    <form method="post" action="/addinventory">
+        <div class="form-group">
+            <label>Furniture Bank Location:</label>
+            <select class="form-control" placeholder="Furniture Bank" name="bankName">
+                {{#each data}}
+                    <option value="{{belongsTo}}">
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Type of furniture:</label>
+            <select class="form-control" placeholder="Item" name="itemType">
+                <option value="Table"></option>
+                <option value="Dining Chair set"></option>
+                <option value="Recliner"></option>
+                <option value="Loveseat"></option>
+                <option value="Sofa"></option>
+                <option value="Dresser"></option>
+                <option value="TV Stand"></option>
+                <option value="Vanity"></option>
+                <option value="Desk"></option>
+                <option value="Other"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Item Description:</label>
+            <input type="description" class="form-control" placeholder="Description" name="description">
+        </div>
+        <div class="form-group">
+            <label>Wear:</label>
+            <p>(1 is very worn, 10 is like new)</p>
+            <select class="form-control" placeholder="Item" name="itemType">
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+                <option value="9"></option>
+                <option value="10"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Name of Donor (if known):</label>
+            <input type="donor" class="form-control" placeholder="First, Last Name of Donor" name="donor">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sucess">Submit</button>
+        </div>
+</div>
