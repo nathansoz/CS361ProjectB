@@ -59,13 +59,26 @@ exports.appointment = function(req, res) {
 };
 // route for when user submits a new appointment
 exports.appointmentNew = function(req, res) {
-  //TODO: handle subbmitting a new appointment -> error checking, api calls, tests
-  res.redirect(200, '/');
+    //TODO: handle subbmitting a new appointment -> error checking, api calls, tests
+    res.redirect(200, '/');
+};
+// route for adding furniture to bank inventory
+exports.addInventory = function(req, res) {
+    // TODO: remove mock data, hook up to db etc etc
+    var data = {};
+    res.status(200);
+    res.render('addinventory', {
+        data: __MOCK_DATA__
+    });
+};
+// route for when bank submits new Item
+exports.newInventory = function(req, res) {
+    // FIXME
 };
 // route for swapping furniture
 exports.swap = function(req, res) {
     res.render('swap');
-    // pulling from db goes here!
+    //TODO: pulling from db goes here!
 };
 exports.bankSwap = function(req, res) {
     db.Item.find({
