@@ -62,6 +62,52 @@ exports.appointmentNew = function(req, res) {
     //TODO: handle subbmitting a new appointment -> error checking, api calls, tests
     res.redirect(200, '/');
 };
+// foute for registering furniture bank
+exports.registerBank = function(req, res) {
+    res.render('registerBank');
+}
+exports.bankNew = function(req, res) {
+    // Front-end varification:
+    var name = req.body.name;
+    var line1 = req.body.line1;
+    var line2 = req.body.line2;
+    var city = req.body.city;
+    var state = req.body.state;
+    var country = req.body.country;
+    req.checkBody('name', 'Furniture Bank Name is required').notEmpty();
+    req.checkBody('line1', 'Address line 1 is required').notEmpty();
+    req.checkBody('city', 'City is required').notEmpty();
+    req.checkBody('state', 'State is required').notEmpty();
+    req.checkBody('country', 'Country is required').notEmpty();
+    var errors = req.validationErrors();
+    if (errors) {
+        res.render('register', {
+            errors: errors
+        });
+    }
+    else {
+        console.log("Does not recognize below as a function.");
+        db.Bank.findOne({
+            where: {
+                name: req.name
+            }
+        }).then(function(bank) {
+            if (!bank) {
+                // FIXME this is basically done, can't find how to make reference to the foreign id :(
+                db.Bank.create({name: req.body.name, belongsTo:
+                    (db.Address.create({primaryAddressLine: req.body.line1, secondaryAddressLine: req.body.line2, city: req.body.city, state: req.body.state, country: req.body.country}))
+                }).error(function(err){
+                    console.log(err);
+                });
+            }
+            else {
+                res.redirect('/registerBank');
+            }
+        });
+        console.log('Bank Registration Passed');
+        res.redirect('/');
+    }
+}
 // route for adding furniture to bank inventory
 exports.addInventory = function(req, res) {
     // TODO: remove mock data, hook up to db etc etc
