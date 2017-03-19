@@ -5,7 +5,7 @@
             <label>Furniture Bank Location:</label>
             <select class="form-control" placeholder="Furniture Bank" name="bankName">
                 {{#each data}}
-                    <option value="{{name}}">{{name}}</option>
+                    <option value="{{Bank.name}}">{{Bank.name}}</option>
                 {{/each}}
             </select>
         </div>
@@ -31,7 +31,7 @@
         <div class="form-group">
             <label>Wear:</label>
             <p>(1 is very worn, 10 is like new)</p>
-            <select class="form-control" placeholder="Item" name="itemType">
+            <select class="form-control" placeholder="Item" name="itemWear">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -46,9 +46,10 @@
         </div>
         <div class="form-group">
             <label>Name of Donor (if known):</label>
-            <input type="donor" class="form-control" placeholder="First, Last Name of Donor" name="donor">
+            <input type="donor" class="form-control" placeholder="First and Last Name of Donor" name="donor">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-sucess">Submit</button>
         </div>
+    </form>
 </div>
