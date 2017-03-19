@@ -5,28 +5,34 @@ var server = require('../src/app');
 var db = require('../src/models');
 var should = chai.should();
 chai.use(chaiHttp);
+var assert = require('assert');
 // testing for user routes
 describe('routes - user', function() {
     beforeEach(function() {
-        db.sequelize.sync({
-            force: true
-        }).then((data) => {
-            console.log(data);
-            require('../src/config/db-seed')(db);
-        });
+        //TODO: At some point, database connection should be mocked out.
+        //db.init(function() {
+            //db.sequelize.sync({
+                //force: true
+                //}).then(function() {
+                    //require('../src/config/db-seed')(db);
+            //});
+        //});
     });
     describe('browse', function() {
         xit('should handle errors', function() {});
-        xit('should GET all items', function(done) {
+        it('should GET all items', function(done) {
             chai.request(server).get('/browse').end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('object');
-                res.body.length.should.be.eql(0);
+                assert(res.status === 200);
                 done();
             });
         });
-        xit('should not error on empty data', function(done) {
-            done();
+        it('Should return 200 status and call render', function(done) {
+            var statusFunc = function f(x) { console.log(x); f.status = x };
+            var renderFunc = function f(x, y) { f.data = y; f.template = x };
+            user.browse({ }, { status: statusFunc, render: renderFunc });
+            assert(statusFunc.status === 200);
+            assert(renderFunc.data !== null);
+            done()
         });
     });
     describe('appointment', function() {
@@ -47,9 +53,11 @@ describe('routes - user', function() {
             // body...
             done();
         });
-        xit('successfully async updates the database', function(done) {
-            // body...
-            done();
+        it('successfully indexes into listed appointments', function(done) {
+            chai.request(server).get('/appointment/1').end((err, res) => {
+                assert(res.status === 200);
+                done();
+            });
         });
         xit('renders the correct data', function(done) {
             done();
