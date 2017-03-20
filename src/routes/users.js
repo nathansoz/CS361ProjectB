@@ -120,7 +120,17 @@ exports.addInventory = function(req, res) {
 };
 // route for when bank submits new Item
 exports.newInventory = function(req, res) {
-    // FIXME
+    db.Item.create({
+        name: req.body.itemType,
+        description: req.body.description,
+        wearPercentage: req.body.itemWear
+        // TODO link to donor!
+        // TODO link to furniture bank!
+    }).error(function(err){
+        console.log(err);
+    });
+    console.log("Item submitted");
+    res.render('addinventory');
 };
 // route for swapping furniture
 exports.swap = function(req, res) {
@@ -139,6 +149,21 @@ exports.bankSwap = function(req, res) {
         }); */
     });
 };
+exports.donate = function(req, res) {
+    res.render('donate');
+};
+exports.donateNew = function(req, res) {
+    db.Item.create({
+        name: req.body.itemType,
+        description: req.body.description,
+        wearPercentage: req.body.itemWear
+        // TODO link to donor!
+    }).error(function(err){
+        console.log(err);
+    });
+    console.log("Item submitted");
+    res.render('donate');
+}
 exports.registerNew = function(req, res) {
     // Front-End Verification:
     var name = req.body.name;
