@@ -119,6 +119,8 @@ app.get('/swap', users.swap);
 app.post('/swap', users.bankSwap);
 app.get('/registerbank', users.registerBank);
 app.post('/registerbank', users.bankNew);
+app.get('/donate', users.donate);
+app.post('/donate', users.donateNew);
 // After user authentication
 app.get('/userhome', application.IsAuthenticated, users.homepage);
 // Logout of session
