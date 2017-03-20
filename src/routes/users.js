@@ -62,10 +62,10 @@ exports.appointmentNew = function(req, res) {
     //TODO: handle subbmitting a new appointment -> error checking, api calls, tests
     res.redirect(200, '/');
 };
-// foute for registering furniture bank
+// route for registering furniture bank
 exports.registerBank = function(req, res) {
     res.status(200);
-    res.render('registerBank');
+    res.render('registerbank');
 }
 exports.bankNew = function(req, res) {
     // Front-end varification:
