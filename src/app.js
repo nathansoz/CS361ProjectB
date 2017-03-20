@@ -51,7 +51,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// XXX: is this used? move to db files??
 function seed() {
     db.sequelize.sync({
         force: true

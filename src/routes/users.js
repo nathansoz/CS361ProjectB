@@ -64,6 +64,7 @@ exports.appointmentNew = function(req, res) {
 };
 // foute for registering furniture bank
 exports.registerBank = function(req, res) {
+    res.status(200);
     res.render('registerBank');
 }
 exports.bankNew = function(req, res) {
@@ -123,6 +124,7 @@ exports.newInventory = function(req, res) {
 };
 // route for swapping furniture
 exports.swap = function(req, res) {
+    res.status(200);
     res.render('swap');
     //TODO: pulling from db goes here!
 };
