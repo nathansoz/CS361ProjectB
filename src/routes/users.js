@@ -64,7 +64,7 @@ exports.appointmentNew = function(req, res) {
 };
 // foute for registering furniture bank
 exports.registerBank = function(req, res) {
-    res.render('registerBank');
+    res.render('registerbank');
 }
 exports.bankNew = function(req, res) {
     // Front-end varification:
