@@ -62,8 +62,9 @@ exports.appointmentNew = function(req, res) {
     //TODO: handle subbmitting a new appointment -> error checking, api calls, tests
     res.redirect(200, '/');
 };
-// foute for registering furniture bank
+// route for registering furniture bank
 exports.registerBank = function(req, res) {
+    res.status(200);
     res.render('registerbank');
 }
 exports.bankNew = function(req, res) {
@@ -133,11 +134,8 @@ exports.newInventory = function(req, res) {
 };
 // route for swapping furniture
 exports.swap = function(req, res) {
-    var data = {};
     res.status(200);
-    res.render('swap', {
-        data: __MOCK_DATA__
-    });
+    res.render('swap');
     //TODO: pulling from db goes here!
 };
 exports.bankSwap = function(req, res) {
